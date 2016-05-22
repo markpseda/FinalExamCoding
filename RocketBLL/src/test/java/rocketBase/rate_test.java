@@ -42,9 +42,9 @@ public class rate_test {
 	
 	@Test
 	public void getPaymentTest() {
-		double testPayment = RateBLL.getPayment(.04, 360, 300000, 0, true);
+		double testPayment = RateBLL.getPayment((.04)/12, 360, 300000, 0, false);
 		System.out.println(testPayment);
-		assertEquals(testPayment, 1432.25, .01);
+		assertEquals(testPayment, -1432.25, .01);
 	}
 
 }
