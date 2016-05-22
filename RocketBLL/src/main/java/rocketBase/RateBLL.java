@@ -10,7 +10,7 @@ public class RateBLL {
 
 	private static RateDAL _RateDAL = new RateDAL();
 	
-	static double getRate(int GivenCreditScore) throws RateException 
+	public static double getRate(int GivenCreditScore) throws RateException 
 	{
 		//TODO - RocketBLL RateBLL.getRate - make sure you throw any exception
 		ArrayList<RateDomainModel> Rates = RateDAL.getAllRates();
@@ -42,7 +42,7 @@ public class RateBLL {
 	//		https://poi.apache.org/apidocs/org/apache/poi/ss/formula/functions/FinanceLib.html
 	
 	public static double getPayment(double r, double n, double p, double f, boolean t)
-	{		
+	{	
 		return FinanceLib.pmt(r, n, p, f, t);
 	}
 }
