@@ -18,7 +18,7 @@ public class Rate_Test {
 	//		Check to see if a RateException is thrown if there are no rates for a given
 	//		credit score
 	@Test
-	public void test() {
+	public void ResturnsRateTest() {
 		
 		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
 		System.out.println ("Rates size: " + rates.size());
@@ -27,4 +27,9 @@ public class Rate_Test {
 		assert(1==1);
 	}
 
+
+	@Test
+	public void ExceptionTest(){
+		assert(1==1);
+	}
 }
