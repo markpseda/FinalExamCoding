@@ -1,11 +1,15 @@
 package rocket.app.view;
 
+import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ResourceBundle;
 
 import eNums.eAction;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -14,7 +18,7 @@ import rocket.app.MainApp;
 import rocketCode.Action;
 import rocketData.LoanRequest;
 
-public class MortgageController {
+public class MortgageController implements Initializable{
 
 	private MainApp mainApp;
 	
@@ -33,6 +37,8 @@ public class MortgageController {
 	@FXML
 	private TextField txtHouseCost;
 	@FXML
+	private TextField txtDownPayment;
+	@FXML
 	private ComboBox loanTerm;
 	
 	
@@ -46,6 +52,8 @@ public class MortgageController {
 	private Label lblHouseCost;
 	@FXML
 	private Label lblTerm;
+	@FXML
+	private Label lblDownPayment;
 	
 	@FXML
 	public Label lblError;
@@ -79,8 +87,11 @@ public class MortgageController {
 		//			I've created you an instance of lq...  execute the setters in lq
 		lq.setdIncome(Double.parseDouble(txtIncome.getText()));
 		lq.setdExpenses(Double.parseDouble(txtExpenses.getText()));
-		lq.setdAmount(Double.parseDouble(txtHouseCost.getText()));
-		lq.setiTerm(360);
+		lq.setdAmount(Double.parseDouble(txtHouseCost.getText())-Double.parseDouble(txtDownPayment.getText()));
+		if(loanTerm.getSelectionModel().getSelectedItem().toString() == "15 Year")
+			lq.setiTerm(180);
+		else
+			lq.setiTerm(360);
 		lq.setiCreditScore(Integer.parseInt(txtCreditScore.getText()));
 		
 		
@@ -109,20 +120,19 @@ public class MortgageController {
 		}
 		else if(FinalPaymentPossible > payment){
 			output = new DecimalFormat("#.##").format(payment);
-			lblError.setText("Your mortgage payment will be: $" + output);
+			String APR = String.valueOf(lRequest.getdRate());
+			lblError.setText("Your mortgage payment will be: $" + output + " and your APR is " + APR + "%");
 		}
 		else{
 			output = "House Cost Too High.";
 			lblError.setText(output);
 		}
 
-		
-		
-		//	TODO - RocketClient.HandleLoanRequestDetails
-		//			lRequest is an instance of LoanRequest.
-		//			after it's returned back from the server, the payment (dPayment)
-		//			should be calculated.
-		//			Display dPayment on the form, rounded to two decimal places
-		
+	}
+
+	ObservableList<String> list = FXCollections.observableArrayList("15 Year","30 Year");
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		loanTerm.setItems(list);	
 	}
 }
