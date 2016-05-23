@@ -67,7 +67,7 @@ public class LoanRequest implements Serializable {
 	public double getdExpenses() {
 		return dExpenses;
 	}
-	public void setExpenses(double dexpenses) {
+	public void setdExpenses(double dexpenses) {
 		dExpenses = dexpenses;
 	}
 	
