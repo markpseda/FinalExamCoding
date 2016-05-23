@@ -28,7 +28,8 @@ public class RocketHub extends Hub {
 				lq.setdRate(RateBLL.getRate(lq.getiCreditScore())); 
 				lq.setdPayment(-(RateBLL.getPayment((lq.getdRate()/100)/12, lq.getiTerm(), lq.getdAmount(), 0, false)));
 			}catch(RateException e){
-				e.printStackTrace();
+				sendToAll(e);
+				return;
 			}
 			
 			//	TODO - RocketHub.messageReceived

@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import eNums.eAction;
+import exceptions.RateException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -114,11 +115,7 @@ public class MortgageController implements Initializable{
 
 		double payment = lRequest.getdPayment();
 		String output;
-		if(payment == 0){
-			output = "Credit Score too Low";
-			lblError.setText(output);
-		}
-		else if(FinalPaymentPossible > payment){
+		if(FinalPaymentPossible > payment){
 			output = new DecimalFormat("#.##").format(payment);
 			String APR = String.valueOf(lRequest.getdRate());
 			lblError.setText("Your mortgage payment will be: $" + output + " and your APR is " + APR + "%");
@@ -134,5 +131,10 @@ public class MortgageController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loanTerm.setItems(list);	
+	}
+	
+	
+	public void HandleRateException(RateException e){
+		lblError.setText("Credit Score Too Low");
 	}
 }

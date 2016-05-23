@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import exceptions.RateException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -150,6 +151,10 @@ public class MainApp extends Application {
 					LoanRequest lq = (LoanRequest)message;
 					rController.HandleLoanRequestDetails(lq);
 				} 
+				else if (message instanceof RateException){
+					RateException e = (RateException)message;
+					rController.HandleRateException(e);
+				}
 				else if (message instanceof Object) {
 				}
 			});
