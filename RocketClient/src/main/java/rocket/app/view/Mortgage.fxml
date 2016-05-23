@@ -9,8 +9,8 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rocket.app.view.MortgageController">
    <children>
       <Button fx:id="btnPayment" layoutX="418.0" layoutY="154.0" mnemonicParsing="false" onAction="#btnCalculatePayment" text="Calculate Payment" />
-      <Label fx:id="lblIncome" layoutX="46.0" layoutY="47.0" text="Income" />
-      <Label fx:id="lblExpenses" layoutX="153.0" layoutY="45.0" text="Expenses" />
+      <Label fx:id="lblIncome" layoutX="23.0" layoutY="45.0" text="Monthly Income" />
+      <Label fx:id="lblExpenses" layoutX="130.0" layoutY="45.0" text="Monthly Expenses" />
       <Label fx:id="lblHouseCost" layoutX="439.0" layoutY="45.0" text="House Cost" />
       <Label fx:id="lblCreditScore" layoutX="266.0" layoutY="45.0" text="Credit Score" />
       <Label layoutX="430.0" layoutY="122.0" />
@@ -18,8 +18,8 @@
       <TextField fx:id="txtIncome" layoutX="31.0" layoutY="75.0" prefHeight="25.0" prefWidth="71.0" />
       <TextField fx:id="txtExpenses" layoutX="131.0" layoutY="73.0" prefHeight="25.0" prefWidth="71.0" />
       <TextField fx:id="txtHouseCost" layoutX="391.0" layoutY="73.0" />
-      <TextField fx:id="txtCreditScore" layoutX="220.0" layoutY="73.0" />
+      <TextField fx:id="txtCreditScore" layoutX="226.0" layoutY="73.0" />
       <ComboBox layoutX="178.0" layoutY="154.0" prefWidth="150.0" />
-      <Label fx:id="lblError" layoutX="220.0" layoutY="239.0" text="Label" />
+      <Label fx:id="lblError" layoutX="159.0" layoutY="238.0" text="Please Enter the Required Information Above" />
    </children>
 </AnchorPane>

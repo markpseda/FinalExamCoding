@@ -48,7 +48,7 @@ public class MortgageController {
 	private Label lblTerm;
 	
 	@FXML
-	private Label lblError;
+	public Label lblError;
 	
 	//		TextBox  - 	txtIncome
 	//		TextBox  - 	txtExpenses
@@ -90,10 +90,32 @@ public class MortgageController {
 	
 	public void HandleLoanRequestDetails(LoanRequest lRequest)
 	{
-		lblError.setVisible(true);
+		double PaymentPossible = lRequest.getdIncome()*.28;
+		double OtherPaymentPossible = (lRequest.getdIncome() - lRequest.getdExpenses())*.36;
+		double FinalPaymentPossible;
+		if(PaymentPossible < OtherPaymentPossible){
+			FinalPaymentPossible = PaymentPossible;
+		}
+		else {
+			FinalPaymentPossible = OtherPaymentPossible;
+		}
+	
+
 		double payment = lRequest.getdPayment();
-		String output = new DecimalFormat("#.##").format(payment);
-		lblError.setText(output);
+		String output;
+		if(payment == 0){
+			output = "Credit Score too Low";
+			lblError.setText(output);
+		}
+		else if(FinalPaymentPossible > payment){
+			output = new DecimalFormat("#.##").format(payment);
+			lblError.setText("Your mortgage payment will be: $" + output);
+		}
+		else{
+			output = "House Cost Too High.";
+			lblError.setText(output);
+		}
+
 		
 		
 		//	TODO - RocketClient.HandleLoanRequestDetails

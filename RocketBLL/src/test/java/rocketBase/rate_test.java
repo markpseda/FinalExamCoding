@@ -29,15 +29,8 @@ public class rate_test {
 	}
 	
 	@Test(expected = RateException.class)
-	public void RateExceptiontest() {
-		try{
-			//500 is too low of a credit score
-			RateBLL.getRate(500);
-			System.out.println("Failed Test, exception should be thrown");
-		} catch (RateException e) {
-			e.printStackTrace();
-		}
-		
+	public void RateExceptiontest() throws RateException {
+		RateBLL.getRate(500);
 	}
 	
 	@Test
